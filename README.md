@@ -1,71 +1,50 @@
-# Project Vox: Language-Reservoir Pilot
 
-**Project Vox** is a self-contained, offline-first desktop application for language learning, built entirely with the Python standard library. This pilot version focuses on Mandarin Chinese (A1 level) and provides tools for vocabulary drilling, grammar tracking, and progress visualization.
+# Project Vox
 
-The core mission is to provide a powerful, private, and portable learning tool that runs on any machine with Python, without requiring external dependencies, web servers, or cloud accounts. Your data stays with you.
+Project Vox is an offline-first language learning tool for Mandarin Chinese (A1 level), featuring spaced repetition vocabulary, grammar tracking, and progress visualization. The project is split into two main versions:
 
+- **Desktop App:** 100% Python, using Tkinter for the GUI. No external dependencies required.
+- **Web App:** Modern HTML/CSS/JS frontend with a Python (Flask) backend.
 
-*(Conceptual mockup of the running application)*
+Each version has its own folder and README with setup and usage instructions.
 
-## Key Features
+## Features
+- Spaced Repetition System (Leitner, 6-box)
+- Grammar progress tracker
+- Dashboard for mastery stats
+- Automatic local backups
+- Data import/export
 
--   **Spaced Repetition System (SRS):** Uses a six-box Leitner system to efficiently drill vocabulary. Cards you know less appear more frequently.
--   **Grammar Tracker:** Log and track your progress through a list of essential grammar points, marking them as "seen," "practiced," or "mastered."
--   **Dashboard:** A simple dashboard visualizes your mastery percentage for both vocabulary and grammar, keeping you motivated.
--   **100% Offline & Private:** The entire application runs locally. Your progress data never leaves your machine.
--   **Zero Dependencies:** Runs on any standard Python 3.9+ installation. No `pip install` required.
--   **Automatic Backups:** Every time you update a card or grammar point, the application automatically saves a timestamped backup of your progress.
--   **Portable Progress:** Easily export your entire learning history to a single JSON file and import it on another machine.
+See the README in each subfolder for details on running the desktop or web version.
 
-## Requirements
+## Project Structure
 
--   Python 3.9 or newer.
-
-That's it!
-
-## Setup and Installation
-
-No installation is needed. Just clone this repository or download the source code.
-
-1.  **Get the code:**
-    ```bash
-    git clone https://github.com/BenWassa/Vox.git
-    cd Vox
-    ```
-2.  **Ensure you have the data files:** The repository should include `vocab_a1.json` and `grammar_a1.json` inside the `data/` directory. If not, create the directory and place them there.
-
-## How to Run the Application
-
-To start the graphical user interface (GUI), run `main.py` from your terminal:
-
-```bash
-    python main.py
+```
+Vox/
+│
+├── main.py             # Main app entry point, handles CLI args
+├── database.py         # All SQLite database logic (DAL)
+├── logic.py            # Pure business logic (e.g., SRS intervals)
+├── ui.py               # All tkinter GUI components
+├── models.py           # Data classes for vocab/grammar objects
+│
+├── webapp/             # HTML frontend powered by Flask
+│   ├── app.py          # Web server entry point
+│   ├── templates/      # HTML templates
+│   └── static/         # CSS/JS assets
+│
+├── data/
+│   ├── vocab_a1.json   # Source HSK A1 vocabulary
+│   └── grammar_a1.json # Source A1 grammar points
+│
+├── backups/            # Timestamped database backups are stored here (created on first run)
+│
+└── progress.db         # The SQLite database file (created on first run)
 ```
 
-On the very first run, the application will automatically:
-1.  Create the `progress.db` SQLite database file.
-2.  Create the `backups/` directory.
-3.  Populate the database with the initial vocabulary and grammar from the `data/` directory.
-
-## Web Frontend
-
-If you prefer an HTML-based interface, a small web application is included. First install the required dependency:
-
-```bash
-pip install -r webapp/requirements.txt
-```
-
-Then start the server:
-
-```bash
-python webapp/app.py
-```
-
-Navigate to <http://localhost:5000> in your browser to use the web interface.
-
-## Using the Application
-
-The application is organized into three tabs:
+## License
+- Python code: MIT License
+- Data: Creative Commons (see data files for details)
 
 ### 1. Vocab Study
 

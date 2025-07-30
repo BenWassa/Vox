@@ -1,0 +1,26 @@
+[
+  {
+    "id": "v001",
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "english": ["to love", "to be fond of"]
+  },
+  {
+    "id": "v002",
+    "hanzi": "八",
+    "pinyin": "bā",
+    "english": ["eight", "8"]
+  },
+  {
+    "id": "v003",
+    "hanzi": "爸爸",
+    "pinyin": "bàba",
+    "english": ["dad", "father"]
+  },
+  {
+    "id": "v004",
+    "hanzi": "杯子",
+    "pinyin": "bēizi",
+    "english": ["cup", "glass"]
+  }
+]
