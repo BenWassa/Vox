@@ -1,4 +1,6 @@
+
 let currentCard = null;
+let mode = 'guess-english'; // 'guess-english' or 'guess-hanzi'
 
 function showTab(name) {
     document.querySelectorAll('.tab').forEach(div => div.style.display = 'none');
@@ -10,40 +12,71 @@ function showTab(name) {
 
 function loadCard() {
     fetch('/api/card').then(r => r.json()).then(data => {
+        const pinyin = document.getElementById('pinyin');
+        const english = document.getElementById('english');
+        const hanzi = document.getElementById('hanzi');
+        const revealBtn = document.getElementById('reveal');
+        const correctBtn = document.getElementById('correct');
+        const incorrectBtn = document.getElementById('incorrect');
+        const modeLabel = document.getElementById('mode-label');
+
         if (!data.available) {
-            document.getElementById('pinyin').innerText = 'All done!';
-            document.getElementById('english').innerText = '';
-            document.getElementById('hanzi').innerText = '';
-            document.getElementById('reveal').disabled = true;
-            document.getElementById('correct').disabled = true;
-            document.getElementById('incorrect').disabled = true;
+            pinyin.innerText = '';
+            english.innerText = '';
+            hanzi.innerText = 'All done!';
+            revealBtn.disabled = true;
+            correctBtn.disabled = true;
+            incorrectBtn.disabled = true;
+            modeLabel.innerText = '';
             currentCard = null;
             return;
         }
         currentCard = data.card;
-        document.getElementById('pinyin').innerText = data.card.pinyin;
-        document.getElementById('english').innerText = data.card.english;
-        document.getElementById('hanzi').innerText = '?';
-        document.getElementById('reveal').disabled = false;
-        document.getElementById('correct').disabled = true;
-        document.getElementById('incorrect').disabled = true;
+        if (mode === 'guess-english') {
+            hanzi.innerText = data.card.hanzi;
+            pinyin.innerText = data.card.pinyin;
+            english.innerText = '?';
+            modeLabel.innerText = 'Guess the English meaning';
+        } else {
+            hanzi.innerText = '?';
+            pinyin.innerText = '';
+            english.innerText = data.card.english;
+            modeLabel.innerText = 'Guess the Hanzi and Pinyin';
+        }
+        revealBtn.disabled = false;
+        correctBtn.disabled = true;
+        incorrectBtn.disabled = true;
     });
 }
 
 function reveal() {
     if (!currentCard) return;
-    document.getElementById('hanzi').innerText = currentCard.hanzi;
+    const hanzi = document.getElementById('hanzi');
+    const pinyin = document.getElementById('pinyin');
+    const english = document.getElementById('english');
+    if (mode === 'guess-english') {
+        english.innerText = currentCard.english;
+    } else {
+        hanzi.innerText = currentCard.hanzi;
+        pinyin.innerText = currentCard.pinyin;
+    }
     document.getElementById('correct').disabled = false;
     document.getElementById('incorrect').disabled = false;
     document.getElementById('reveal').disabled = true;
 }
 
 function mark(correct) {
+    if (!currentCard) return;
     fetch('/api/card/' + currentCard.id, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({correct: correct})
     }).then(() => loadCard());
+}
+
+function switchMode() {
+    mode = (mode === 'guess-english') ? 'guess-hanzi' : 'guess-english';
+    loadCard();
 }
 
 function loadGrammar() {

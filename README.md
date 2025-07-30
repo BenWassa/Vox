@@ -27,7 +27,7 @@ Legacy desktop code has been removed for clarity and maintainability.
 2. Place `vocab_a1.json` and `grammar_a1.json` in the `webapp/data/` directory.
 3. Start the server:
    ```bash
-   python webapp/app.py
+   flask --app webapp run
    ```
 4. Open your browser to [http://localhost:5000](http://localhost:5000)
 
