@@ -5,7 +5,7 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 ---
 
 ## 1. `app.py` (Flask Backend)
-- [ ] Refactor to support environment-based config (dev/prod)
+- [x] Refactor to support environment-based config (dev/prod)
 - [ ] Add error handling and input validation to all endpoints
 - [ ] Modularize API routes (consider Blueprints)
 - [ ] Add authentication (optional/future)
