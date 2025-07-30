@@ -29,8 +29,8 @@ No installation is needed. Just clone this repository or download the source cod
 
 1.  **Get the code:**
     ```bash
-    git clone https://github.com/your-username/language-reservoir.git
-    cd language-reservoir
+    git clone https://github.com/BenWassa/Vox.git
+    cd Vox
     ```
 2.  **Ensure you have the data files:** The repository should include `vocab_a1.json` and `grammar_a1.json` inside the `data/` directory. If not, create the directory and place them there.
 
