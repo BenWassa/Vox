@@ -22,8 +22,16 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 - [ ] Add client-side validation where appropriate
 - [ ] Add tests (Jest or similar, if feasible)
 
+### New UI/UX Features
+- [ ] Display a centered large Chinese character with pinyin beneath
+- [ ] Input for user to guess the English translation
+- [ ] Add mode switch button (character→English or English→character)
+- [ ] Update logic to support both directions
+- [ ] Show feedback for correct/incorrect answers
+
 ## 3. `static/style.css` (Frontend CSS)
 - [ ] Redesign for a modern, visually appealing look (colors, spacing, fonts)
+- [ ] Center main quiz view (character/pinyin/guess input)
 - [ ] Make UI responsive for mobile/tablet
 - [ ] Add transitions/animations for interactivity
 - [ ] Improve accessibility (contrast, focus states, etc.)
@@ -34,6 +42,7 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 - [ ] Add favicon and app icon
 - [ ] Improve semantic HTML (use proper tags for tables, buttons, etc.)
 - [ ] Add accessibility features (aria-labels, roles)
+- [ ] Add main quiz view: centered character, pinyin, guess input, mode switch button
 
 ## 5. `data/` (Vocab & Grammar JSON)
 - [x] Ensure `vocab_a1.json` and `grammar_a1.json` are present in `webapp/data/`
