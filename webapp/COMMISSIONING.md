@@ -56,7 +56,11 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 - [ ] Add backup/restore endpoints for webapp
 - [ ] Add tests for data loading and saving
 
-## 7. General/Project
+## 7. Debugging & Developer Tools
+- [ ] Set up robust debugging for both frontend (browser devtools, console, breakpoints) and backend (logging, Flask debug mode, pdb)
+- [ ] Document best practices for debugging and troubleshooting
+
+## 8. General/Project
 - [ ] Add README badges (build, license, etc.)
 - [ ] Add CONTRIBUTING.md and code style guide
 - [ ] Add CI/CD pipeline (GitHub Actions, etc.)
