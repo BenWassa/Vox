@@ -9,7 +9,7 @@ The core mission is to provide a powerful, private, and portable learning tool t
 
 ## Key Features
 
--   **Spaced Repetition System (SRS):** Uses a five-box Leitner system to efficiently drill vocabulary. Cards you know less appear more frequently.
+-   **Spaced Repetition System (SRS):** Uses a six-box Leitner system to efficiently drill vocabulary. Cards you know less appear more frequently.
 -   **Grammar Tracker:** Log and track your progress through a list of essential grammar points, marking them as "seen," "practiced," or "mastered."
 -   **Dashboard:** A simple dashboard visualizes your mastery percentage for both vocabulary and grammar, keeping you motivated.
 -   **100% Offline & Private:** The entire application runs locally. Your progress data never leaves your machine.
@@ -110,7 +110,7 @@ python main.py --import my_progress.json
 The project is organized into several modules to separate concerns:
 
 ```
-/language-reservoir
+Vox/
 │
 ├── main.py             # Main app entry point, handles CLI args
 ├── database.py         # All SQLite database logic (DAL)
@@ -122,12 +122,12 @@ The project is organized into several modules to separate concerns:
 │   ├── vocab_a1.json   # Source HSK A1 vocabulary
 │   └── grammar_a1.json # Source A1 grammar points
 │
-├── backups/            # Timestamped database backups are stored here
+├── backups/            # Timestamped database backups are stored here (created on first run)
 │
-└── progress.db         # The SQLite database file
+└── progress.db         # The SQLite database file (created on first run)
 ```
 
 ## License
 
--   **Source Code:** The Python source code in this repository is licensed under the [MIT License](LICENSE).
+-   **Source Code:** The Python source code in this repository is intended to be licensed under the MIT License. (If the LICENSE file is missing, please add it to clarify the terms.)
 -   **Data:** The included language data (`vocab_a1.json`, `grammar_a1.json`) is curated from sources licensed under Creative Commons (CC-BY-SA, CC BY-NC-SA), including the [HSK Academy](https://www.hsk.academy/en/hsk_1) and the [Chinese Grammar Wiki](https://resources.allsetlearning.com/chinese/grammar/).
