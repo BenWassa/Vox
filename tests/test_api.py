@@ -57,3 +57,9 @@ def test_export_import():
     res = client.post('/api/import', data=exported)
     assert res.status_code == 200
 
+
+def test_import_invalid_json():
+    client = get_client()
+    res = client.post('/api/import', data='not-json')
+    assert res.status_code == 400
+

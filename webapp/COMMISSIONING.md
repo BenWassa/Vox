@@ -6,13 +6,13 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 
 ## 1. `app.py` (Flask Backend)
 - [x] Refactor to support environment-based config (dev/prod)
-- [ ] Add error handling and input validation to all endpoints
-- [ ] Modularize API routes (consider Blueprints)
+- [x] Add error handling and input validation to all endpoints
+- [x] Modularize API routes (consider Blueprints)
 - [ ] Add authentication (optional/future)
 - [ ] Improve API documentation (docstrings, OpenAPI, etc.)
-- [ ] Ensure all data paths use `webapp/data/` and are robust to deployment location
-- [ ] Add logging for key actions and errors
-- [ ] Add unit tests for API endpoints
+- [x] Ensure all data paths use `webapp/data/` and are robust to deployment location
+- [x] Add logging for key actions and errors
+- [x] Add unit tests for API endpoints
 
 ## 2. `static/app.js` (Frontend JS)
 - [ ] Refactor to use modern JS (ES6+, modules if possible)

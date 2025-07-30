@@ -12,6 +12,7 @@ def create_app(config_object=DevConfig):
 
     logging.basicConfig(level=app.config['LOG_LEVEL'])
     app.logger.setLevel(app.config['LOG_LEVEL'])
+    app.logger.debug('Using data directory: %s', app.config['DATA_DIR'])
 
     db = DatabaseManager(app.config['DATA_DIR'])
     api.api_db = db
