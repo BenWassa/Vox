@@ -1,26 +1,902 @@
 [
   {
     "id": "v001",
-    "hanzi": "爱",
-    "pinyin": "ài",
-    "english": ["to love", "to be fond of"]
+    "hanzi": "我",
+    "pinyin": "wǒ",
+    "english": ["I", "me"]
   },
   {
     "id": "v002",
-    "hanzi": "八",
-    "pinyin": "bā",
-    "english": ["eight", "8"]
+    "hanzi": "我们",
+    "pinyin": "wǒmen",
+    "english": ["we", "us"]
   },
   {
     "id": "v003",
-    "hanzi": "爸爸",
-    "pinyin": "bàba",
-    "english": ["dad", "father"]
+    "hanzi": "你",
+    "pinyin": "nǐ",
+    "english": ["you"]
   },
   {
     "id": "v004",
+    "hanzi": "他",
+    "pinyin": "tā",
+    "english": ["he", "him"]
+  },
+  {
+    "id": "v005",
+    "hanzi": "她",
+    "pinyin": "tā",
+    "english": ["she", "her"]
+  },
+  {
+    "id": "v006",
+    "hanzi": "这",
+    "pinyin": "zhè (zhèr)",
+    "english": ["this", "here"]
+  },
+  {
+    "id": "v007",
+    "hanzi": "那",
+    "pinyin": "nà (nàr)",
+    "english": ["that", "there"]
+  },
+  {
+    "id": "v008",
+    "hanzi": "哪",
+    "pinyin": "nǎ",
+    "english": ["which"]
+  },
+  {
+    "id": "v009",
+    "hanzi": "哪儿",
+    "pinyin": "nǎr",
+    "english": ["where"]
+  },
+  {
+    "id": "v010",
+    "hanzi": "谁",
+    "pinyin": "shéi",
+    "english": ["who"]
+  },
+  {
+    "id": "v011",
+    "hanzi": "什么",
+    "pinyin": "shénme",
+    "english": ["what", "why"]
+  },
+  {
+    "id": "v012",
+    "hanzi": "多少",
+    "pinyin": "duōshǎo",
+    "english": ["how many", "how much"]
+  },
+  {
+    "id": "v013",
+    "hanzi": "几",
+    "pinyin": "jǐ",
+    "english": ["a few", "how many"]
+  },
+  {
+    "id": "v014",
+    "hanzi": "怎么",
+    "pinyin": "zěnme",
+    "english": ["how"]
+  },
+  {
+    "id": "v015",
+    "hanzi": "怎么样",
+    "pinyin": "zěnmeyàng",
+    "english": ["how about"]
+  },
+  {
+    "id": "v016",
+    "hanzi": "一",
+    "pinyin": "yī",
+    "english": ["one"]
+  },
+  {
+    "id": "v017",
+    "hanzi": "二",
+    "pinyin": "èr",
+    "english": ["two"]
+  },
+  {
+    "id": "v018",
+    "hanzi": "三",
+    "pinyin": "sān",
+    "english": ["three"]
+  },
+  {
+    "id": "v019",
+    "hanzi": "四",
+    "pinyin": "sì",
+    "english": ["four"]
+  },
+  {
+    "id": "v020",
+    "hanzi": "五",
+    "pinyin": "wǔ",
+    "english": ["five"]
+  },
+  {
+    "id": "v021",
+    "hanzi": "六",
+    "pinyin": "liù",
+    "english": ["six"]
+  },
+  {
+    "id": "v022",
+    "hanzi": "七",
+    "pinyin": "qī",
+    "english": ["seven"]
+  },
+  {
+    "id": "v023",
+    "hanzi": "八",
+    "pinyin": "bā",
+    "english": ["eight"]
+  },
+  {
+    "id": "v024",
+    "hanzi": "九",
+    "pinyin": "jiǔ",
+    "english": ["nine"]
+  },
+  {
+    "id": "v025",
+    "hanzi": "十",
+    "pinyin": "shí",
+    "english": ["ten"]
+  },
+  {
+    "id": "v026",
+    "hanzi": "个",
+    "pinyin": "gè",
+    "english": ["measure word for normal objects"]
+  },
+  {
+    "id": "v027",
+    "hanzi": "岁",
+    "pinyin": "suì",
+    "english": ["for age"]
+  },
+  {
+    "id": "v028",
+    "hanzi": "本",
+    "pinyin": "běn",
+    "english": ["for books"]
+  },
+  {
+    "id": "v029",
+    "hanzi": "些",
+    "pinyin": "xiē",
+    "english": ["some"]
+  },
+  {
+    "id": "v030",
+    "hanzi": "块",
+    "pinyin": "kuài",
+    "english": ["piece", "chunk"]
+  },
+  {
+    "id": "v031",
+    "hanzi": "不",
+    "pinyin": "bù",
+    "english": ["no"]
+  },
+  {
+    "id": "v032",
+    "hanzi": "没",
+    "pinyin": "méi",
+    "english": ["no"]
+  },
+  {
+    "id": "v033",
+    "hanzi": "很",
+    "pinyin": "hěn",
+    "english": ["quite", "very"]
+  },
+  {
+    "id": "v034",
+    "hanzi": "太",
+    "pinyin": "tài",
+    "english": ["too"]
+  },
+  {
+    "id": "v035",
+    "hanzi": "都",
+    "pinyin": "dōu",
+    "english": ["all"]
+  },
+  {
+    "id": "v036",
+    "hanzi": "一点儿",
+    "pinyin": "yīdiǎnr",
+    "english": ["a little bit"]
+  },
+  {
+    "id": "v037",
+    "hanzi": "和",
+    "pinyin": "hé",
+    "english": ["and"]
+  },
+  {
+    "id": "v038",
+    "hanzi": "在",
+    "pinyin": "zài",
+    "english": ["in", "at"]
+  },
+  {
+    "id": "v039",
+    "hanzi": "的",
+    "pinyin": "de",
+    "english": ["(possessive/modifying particle)"]
+  },
+  {
+    "id": "v040",
+    "hanzi": "了",
+    "pinyin": "le",
+    "english": ["(completed action particle)"]
+  },
+  {
+    "id": "v041",
+    "hanzi": "吗",
+    "pinyin": "ma",
+    "english": ["(question particle)"]
+  },
+  {
+    "id": "v042",
+    "hanzi": "呢",
+    "pinyin": "ne",
+    "english": ["(question particle)", "(particle for current state)"]
+  },
+  {
+    "id": "v043",
+    "hanzi": "喂",
+    "pinyin": "wèi",
+    "english": ["hello"]
+  },
+  {
+    "id": "v044",
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "english": ["home"]
+  },
+  {
+    "id": "v045",
+    "hanzi": "学校",
+    "pinyin": "xuéxiào",
+    "english": ["school"]
+  },
+  {
+    "id": "v046",
+    "hanzi": "饭店",
+    "pinyin": "fàndiàn",
+    "english": ["restaurant"]
+  },
+  {
+    "id": "v047",
+    "hanzi": "商店",
+    "pinyin": "shāngdiàn",
+    "english": ["store"]
+  },
+  {
+    "id": "v048",
+    "hanzi": "医院",
+    "pinyin": "yīyuàn",
+    "english": ["hospital"]
+  },
+  {
+    "id": "v049",
+    "hanzi": "中国",
+    "pinyin": "Zhōngguó",
+    "english": ["China"]
+  },
+  {
+    "id": "v050",
+    "hanzi": "北京",
+    "pinyin": "Běijīng",
+    "english": ["Beijing"]
+  },
+  {
+    "id": "v051",
+    "hanzi": "上",
+    "pinyin": "shàng",
+    "english": ["up"]
+  },
+  {
+    "id": "v052",
+    "hanzi": "下",
+    "pinyin": "xià",
+    "english": ["down"]
+  },
+  {
+    "id": "v053",
+    "hanzi": "前面",
+    "pinyin": "qiánmiàn",
+    "english": ["front"]
+  },
+  {
+    "id": "v054",
+    "hanzi": "后面",
+    "pinyin": "hòumiàn",
+    "english": ["behind"]
+  },
+  {
+    "id": "v055",
+    "hanzi": "里面",
+    "pinyin": "lǐmiàn",
+    "english": ["inside"]
+  },
+  {
+    "id": "v056",
+    "hanzi": "今天",
+    "pinyin": "jīntiān",
+    "english": ["today"]
+  },
+  {
+    "id": "v057",
+    "hanzi": "明天",
+    "pinyin": "míngtiān",
+    "english": ["tomorrow"]
+  },
+  {
+    "id": "v058",
+    "hanzi": "昨天",
+    "pinyin": "zuótiān",
+    "english": ["yesterday"]
+  },
+  {
+    "id": "v059",
+    "hanzi": "上午",
+    "pinyin": "shàngwǔ",
+    "english": ["morning"]
+  },
+  {
+    "id": "v060",
+    "hanzi": "中午",
+    "pinyin": "zhōngwǔ",
+    "english": ["noon"]
+  },
+  {
+    "id": "v061",
+    "hanzi": "下午",
+    "pinyin": "xiàwǔ",
+    "english": ["afternoon"]
+  },
+  {
+    "id": "v062",
+    "hanzi": "年",
+    "pinyin": "nián",
+    "english": ["year"]
+  },
+  {
+    "id": "v063",
+    "hanzi": "月",
+    "pinyin": "yuè",
+    "english": ["month"]
+  },
+  {
+    "id": "v064",
+    "hanzi": "号",
+    "pinyin": "hào",
+    "english": ["number", "date"]
+  },
+  {
+    "id": "v065",
+    "hanzi": "星期",
+    "pinyin": "xīngqī",
+    "english": ["week"]
+  },
+  {
+    "id": "v066",
+    "hanzi": "点",
+    "pinyin": "diǎn",
+    "english": ["o'clock"]
+  },
+  {
+    "id": "v067",
+    "hanzi": "分钟",
+    "pinyin": "fēnzhōng",
+    "english": ["minute"]
+  },
+  {
+    "id": "v068",
+    "hanzi": "现在",
+    "pinyin": "xiànzài",
+    "english": ["now"]
+  },
+  {
+    "id": "v069",
+    "hanzi": "时候",
+    "pinyin": "shíhou",
+    "english": ["time"]
+  },
+  {
+    "id": "v070",
+    "hanzi": "爸爸",
+    "pinyin": "bàba",
+    "english": ["father"]
+  },
+  {
+    "id": "v071",
+    "hanzi": "妈妈",
+    "pinyin": "māma",
+    "english": ["mother"]
+  },
+  {
+    "id": "v072",
+    "hanzi": "儿子",
+    "pinyin": "érzi",
+    "english": ["son"]
+  },
+  {
+    "id": "v073",
+    "hanzi": "女儿",
+    "pinyin": "nǚ'ér",
+    "english": ["daughter"]
+  },
+  {
+    "id": "v074",
+    "hanzi": "老师",
+    "pinyin": "lǎoshī",
+    "english": ["teacher"]
+  },
+  {
+    "id": "v075",
+    "hanzi": "学生",
+    "pinyin": "xuéshēng",
+    "english": ["student"]
+  },
+  {
+    "id": "v076",
+    "hanzi": "同学",
+    "pinyin": "tóngxué",
+    "english": ["classmate"]
+  },
+  {
+    "id": "v077",
+    "hanzi": "朋友",
+    "pinyin": "péngyou",
+    "english": ["friend"]
+  },
+  {
+    "id": "v078",
+    "hanzi": "医生",
+    "pinyin": "yīshēng",
+    "english": ["doctor"]
+  },
+  {
+    "id": "v079",
+    "hanzi": "先生",
+    "pinyin": "xiānsheng",
+    "english": ["sir"]
+  },
+  {
+    "id": "v080",
+    "hanzi": "小姐",
+    "pinyin": "xiǎojiě",
+    "english": ["Miss"]
+  },
+  {
+    "id": "v081",
+    "hanzi": "衣服",
+    "pinyin": "yīfu",
+    "english": ["cloth"]
+  },
+  {
+    "id": "v082",
+    "hanzi": "水",
+    "pinyin": "shuǐ",
+    "english": ["water"]
+  },
+  {
+    "id": "v083",
+    "hanzi": "菜",
+    "pinyin": "cài",
+    "english": ["dish"]
+  },
+  {
+    "id": "v084",
+    "hanzi": "米饭",
+    "pinyin": "mǐfàn",
+    "english": ["rice"]
+  },
+  {
+    "id": "v085",
+    "hanzi": "水果",
+    "pinyin": "shuǐguǒ",
+    "english": ["fruit"]
+  },
+  {
+    "id": "v086",
+    "hanzi": "苹果",
+    "pinyin": "píngguǒ",
+    "english": ["apple"]
+  },
+  {
+    "id": "v087",
+    "hanzi": "茶",
+    "pinyin": "chá",
+    "english": ["tea"]
+  },
+  {
+    "id": "v088",
     "hanzi": "杯子",
     "pinyin": "bēizi",
-    "english": ["cup", "glass"]
+    "english": ["cup"]
+  },
+  {
+    "id": "v089",
+    "hanzi": "钱",
+    "pinyin": "qián",
+    "english": ["money"]
+  },
+  {
+    "id": "v090",
+    "hanzi": "飞机",
+    "pinyin": "fēijī",
+    "english": ["airplane"]
+  },
+  {
+    "id": "v091",
+    "hanzi": "出租车",
+    "pinyin": "chūzūchē",
+    "english": ["taxi"]
+  },
+  {
+    "id": "v092",
+    "hanzi": "电视",
+    "pinyin": "diànshì",
+    "english": ["television"]
+  },
+  {
+    "id": "v093",
+    "hanzi": "电脑",
+    "pinyin": "diànnǎo",
+    "english": ["computer"]
+  },
+  {
+    "id": "v094",
+    "hanzi": "电影",
+    "pinyin": "diànyǐng",
+    "english": ["movie"]
+  },
+  {
+    "id": "v095",
+    "hanzi": "天气",
+    "pinyin": "tiānqì",
+    "english": ["weather"]
+  },
+  {
+    "id": "v096",
+    "hanzi": "猫",
+    "pinyin": "māo",
+    "english": ["cat"]
+  },
+  {
+    "id": "v097",
+    "hanzi": "狗",
+    "pinyin": "gǒu",
+    "english": ["dog"]
+  },
+  {
+    "id": "v098",
+    "hanzi": "东西",
+    "pinyin": "dōngxi",
+    "english": ["thing"]
+  },
+  {
+    "id": "v099",
+    "hanzi": "人",
+    "pinyin": "rén",
+    "english": ["person"]
+  },
+  {
+    "id": "v100",
+    "hanzi": "名字",
+    "pinyin": "míngzi",
+    "english": ["name"]
+  },
+  {
+    "id": "v101",
+    "hanzi": "书",
+    "pinyin": "shū",
+    "english": ["book"]
+  },
+  {
+    "id": "v102",
+    "hanzi": "汉语",
+    "pinyin": "Hànyǔ",
+    "english": ["Mandarin Chinese"]
+  },
+  {
+    "id": "v103",
+    "hanzi": "字",
+    "pinyin": "zì",
+    "english": ["character"]
+  },
+  {
+    "id": "v104",
+    "hanzi": "桌子",
+    "pinyin": "zhuōzi",
+    "english": ["desk"]
+  },
+  {
+    "id": "v105",
+    "hanzi": "椅子",
+    "pinyin": "yǐzi",
+    "english": ["chair"]
+  },
+  {
+    "id": "v106",
+    "hanzi": "谢谢",
+    "pinyin": "xièxie",
+    "english": ["thank"]
+  },
+  {
+    "id": "v107",
+    "hanzi": "不客气",
+    "pinyin": "búkèqi",
+    "english": ["you are welcome"]
+  },
+  {
+    "id": "v108",
+    "hanzi": "再见",
+    "pinyin": "zàijiàn",
+    "english": ["good-bye"]
+  },
+  {
+    "id": "v109",
+    "hanzi": "请",
+    "pinyin": "qǐng",
+    "english": ["please"]
+  },
+  {
+    "id": "v110",
+    "hanzi": "对不起",
+    "pinyin": "duìbuqǐ",
+    "english": ["sorry"]
+  },
+  {
+    "id": "v111",
+    "hanzi": "没关系",
+    "pinyin": "méiguānxi",
+    "english": ["It doesn't matter"]
+  },
+  {
+    "id": "v112",
+    "hanzi": "是",
+    "pinyin": "shì",
+    "english": ["be (am, is, are)"]
+  },
+  {
+    "id": "v113",
+    "hanzi": "有",
+    "pinyin": "yǒu",
+    "english": ["have"]
+  },
+  {
+    "id": "v114",
+    "hanzi": "看",
+    "pinyin": "kàn",
+    "english": ["look"]
+  },
+  {
+    "id": "v115",
+    "hanzi": "听",
+    "pinyin": "tīng",
+    "english": ["listen"]
+  },
+  {
+    "id": "v116",
+    "hanzi": "说",
+    "pinyin": "shuō",
+    "english": ["speak"]
+  },
+  {
+    "id": "v117",
+    "hanzi": "读",
+    "pinyin": "dú",
+    "english": ["read"]
+  },
+  {
+    "id": "v118",
+    "hanzi": "写",
+    "pinyin": "xiě",
+    "english": ["write"]
+  },
+  {
+    "id": "v119",
+    "hanzi": "看见",
+    "pinyin": "kànjiàn",
+    "english": ["see"]
+  },
+  {
+    "id": "v120",
+    "hanzi": "叫",
+    "pinyin": "jiào",
+    "english": ["call"]
+  },
+  {
+    "id": "v121",
+    "hanzi": "来",
+    "pinyin": "lái",
+    "english": ["come"]
+  },
+  {
+    "id": "v122",
+    "hanzi": "回",
+    "pinyin": "huí",
+    "english": ["return"]
+  },
+  {
+    "id": "v123",
+    "hanzi": "去",
+    "pinyin": "qù",
+    "english": ["go"]
+  },
+  {
+    "id": "v124",
+    "hanzi": "吃",
+    "pinyin": "chī",
+    "english": ["eat"]
+  },
+  {
+    "id": "v125",
+    "hanzi": "喝",
+    "pinyin": "hē",
+    "english": ["drink"]
+  },
+  {
+    "id": "v126",
+    "hanzi": "睡觉",
+    "pinyin": "shuìjiào",
+    "english": ["sleep"]
+  },
+  {
+    "id": "v127",
+    "hanzi": "打电话",
+    "pinyin": "dǎdiànhuà",
+    "english": ["make phone call"]
+  },
+  {
+    "id": "v128",
+    "hanzi": "做",
+    "pinyin": "zuò",
+    "english": ["do"]
+  },
+  {
+    "id": "v129",
+    "hanzi": "买",
+    "pinyin": "mǎi",
+    "english": ["buy"]
+  },
+  {
+    "id": "v130",
+    "hanzi": "开",
+    "pinyin": "kāi",
+    "english": ["open"]
+  },
+  {
+    "id": "v131",
+    "hanzi": "坐",
+    "pinyin": "zuò",
+    "english": ["sit"]
+  },
+  {
+    "id": "v132",
+    "hanzi": "住",
+    "pinyin": "zhù",
+    "english": ["live"]
+  },
+  {
+    "id": "v133",
+    "hanzi": "学习",
+    "pinyin": "xuéxí",
+    "english": ["study"]
+  },
+  {
+    "id": "v134",
+    "hanzi": "工作",
+    "pinyin": "gōngzuò",
+    "english": ["work"]
+  },
+  {
+    "id": "v135",
+    "hanzi": "下雨",
+    "pinyin": "xiàyǔ",
+    "english": ["rain"]
+  },
+  {
+    "id": "v136",
+    "hanzi": "爱",
+    "pinyin": "ài",
+    "english": ["love"]
+  },
+  {
+    "id": "v137",
+    "hanzi": "喜欢",
+    "pinyin": "xǐhuan",
+    "english": ["love", "like"]
+  },
+  {
+    "id": "v138",
+    "hanzi": "想",
+    "pinyin": "xiǎng",
+    "english": ["want"]
+  },
+  {
+    "id": "v139",
+    "hanzi": "认识",
+    "pinyin": "rènshi",
+    "english": ["know"]
+  },
+  {
+    "id": "v140",
+    "hanzi": "会",
+    "pinyin": "huì",
+    "english": ["can"]
+  },
+  {
+    "id": "v141",
+    "hanzi": "能",
+    "pinyin": "néng",
+    "english": ["can", "be able to"]
+  },
+  {
+    "id": "v142",
+    "hanzi": "好",
+    "pinyin": "hǎo",
+    "english": ["good"]
+  },
+  {
+    "id": "v143",
+    "hanzi": "大",
+    "pinyin": "dà",
+    "english": ["big"]
+  },
+  {
+    "id": "v144",
+    "hanzi": "小",
+    "pinyin": "xiǎo",
+    "english": ["small"]
+  },
+  {
+    "id": "v145",
+    "hanzi": "多",
+    "pinyin": "duō",
+    "english": ["many", "much"]
+  },
+  {
+    "id": "v146",
+    "hanzi": "少",
+    "pinyin": "shǎo",
+    "english": ["few", "little"]
+  },
+  {
+    "id": "v147",
+    "hanzi": "冷",
+    "pinyin": "lěng",
+    "english": ["cold"]
+  },
+  {
+    "id": "v148",
+    "hanzi": "热",
+    "pinyin": "rè",
+    "english": ["hot"]
+  },
+  {
+    "id": "v149",
+    "hanzi": "高兴",
+    "pinyin": "gāoxìng",
+    "english": ["happy"]
+  },
+  {
+    "id": "v150",
+    "hanzi": "漂亮",
+    "pinyin": "piàoliang",
+    "english": ["beautiful"]
   }
 ]
