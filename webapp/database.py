@@ -1,4 +1,5 @@
 import random
+import random
 import json
 import os
 from dataclasses import dataclass
@@ -11,6 +12,7 @@ def _load_json(path: str):
 
 @dataclass
 class Card:
+    box: int = 1
     id: str
     hanzi: str
     pinyin: str
@@ -30,8 +32,35 @@ class DatabaseManager:
 
     def __init__(self, data_dir: str):
         self.data_dir = data_dir
+        self.progress_path = os.path.join(data_dir, 'progress.json')
         self.cards = [_to_card(c) for c in _load_json(os.path.join(data_dir, 'vocab_a1.json'))]
         self.grammar = [_to_grammar(g) for g in _load_json(os.path.join(data_dir, 'grammar_a1.json'))]
+
+        # Load progress if available
+        progress = {
+            'card_boxes': {},
+            'grammar_status': {}
+        }
+        if os.path.exists(self.progress_path):
+            try:
+                with open(self.progress_path, 'r', encoding='utf-8') as f:
+                    progress.update(json.load(f))
+            except Exception:
+                # Ignore corrupt progress files
+                pass
+
+        for c in self.cards:
+            c.box = int(progress['card_boxes'].get(c.id, 1))
+        for g in self.grammar:
+            g.status = progress['grammar_status'].get(g.id, g.status)
+
+    def _save_progress(self):
+        data = {
+            'card_boxes': {c.id: c.box for c in self.cards},
+            'grammar_status': {g.id: g.status for g in self.grammar},
+        }
+        with open(self.progress_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f)
 
     def get_card_to_review(self) -> Optional[Card]:
         if not self.cards:
@@ -42,8 +71,14 @@ class DatabaseManager:
         return random.choice(candidates)
 
     def update_card_progress(self, card_id: str, correct: bool):
-        # Placeholder for state update
-        pass
+        for c in self.cards:
+            if c.id == card_id:
+                if correct:
+                    c.box = min(c.box + 1, 6)
+                else:
+                    c.box = 1
+                break
+        self._save_progress()
 
     def get_all_grammar_points(self) -> List[GrammarPoint]:
         return self.grammar
@@ -52,6 +87,7 @@ class DatabaseManager:
         for g in self.grammar:
             if g.id == grammar_id:
                 g.status = status
+                self._save_progress()
 
     def get_dashboard_stats(self) -> dict:
         return {
@@ -87,6 +123,7 @@ def _to_card(raw: dict) -> Card:
         hanzi=raw['hanzi'],
         pinyin=raw['pinyin'],
         english=raw['english'],
+        box=int(raw.get('box', 1)),
     )
 
 def _to_grammar(raw: dict) -> GrammarPoint:
