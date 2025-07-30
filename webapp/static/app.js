@@ -103,7 +103,7 @@ async function loadGrammar() {
         items.forEach(pt => {
             const tr = document.createElement('tr');
             tr.innerHTML = `<td>${pt.id}</td><td>${pt.pattern}</td><td>
-                <select onchange="updateGrammar(${pt.id}, this.value)">
+                <select onchange="updateGrammar('${pt.id}', this.value)">
                     <option value="unseen" ${pt.status=='unseen'?'selected':''}>unseen</option>
                     <option value="seen" ${pt.status=='seen'?'selected':''}>seen</option>
                     <option value="practiced" ${pt.status=='practiced'?'selected':''}>practiced</option>

@@ -45,7 +45,17 @@ def test_dashboard():
     client = get_client()
     res = client.get('/api/dashboard')
     assert res.status_code == 200
-    assert 'total_cards' in res.get_json()
+    data = res.get_json()
+    assert 'total_cards' in data
+    assert 'box_counts' in data
+    assert 'grammar_status_counts' in data
+
+
+def test_dashboard_counts_consistency():
+    client = get_client()
+    data = client.get('/api/dashboard').get_json()
+    total_from_boxes = sum(data['box_counts'].values())
+    assert total_from_boxes == data['total_cards']
 
 
 def test_export_import():

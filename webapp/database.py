@@ -1,3 +1,4 @@
+import random
 import json
 import os
 from dataclasses import dataclass
@@ -33,7 +34,12 @@ class DatabaseManager:
         self.grammar = [_to_grammar(g) for g in _load_json(os.path.join(data_dir, 'grammar_a1.json'))]
 
     def get_card_to_review(self) -> Optional[Card]:
-        return self.cards[0] if self.cards else None
+        if not self.cards:
+            return None
+        # Select randomly among cards in the lowest box (simple Leitner system)
+        min_box = min(c.box for c in self.cards)
+        candidates = [c for c in self.cards if c.box == min_box]
+        return random.choice(candidates)
 
     def update_card_progress(self, card_id: str, correct: bool):
         # Placeholder for state update
@@ -50,7 +56,15 @@ class DatabaseManager:
     def get_dashboard_stats(self) -> dict:
         return {
             'total_cards': len(self.cards),
-            'total_grammar': len(self.grammar)
+            'total_grammar': len(self.grammar),
+            'box_counts': {
+                str(i): sum(1 for c in self.cards if c.box == i)
+                for i in range(1, 7)
+            },
+            'grammar_status_counts': {
+                status: sum(1 for g in self.grammar if g.status == status)
+                for status in ['unseen', 'seen', 'practiced', 'mastered']
+            }
         }
 
     def export_progress_to_json(self) -> str:
@@ -58,7 +72,7 @@ class DatabaseManager:
             'cards': [c.__dict__ for c in self.cards],
             'grammar': [g.__dict__ for g in self.grammar],
         }
-        return json.dumps(data)
+        return json.dumps(data, ensure_ascii=False)
 
     def import_progress_from_json(self, json_data: str):
         data = json.loads(json_data)
