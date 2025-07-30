@@ -12,11 +12,11 @@ def _load_json(path: str):
 
 @dataclass
 class Card:
-    box: int = 1
     id: str
     hanzi: str
     pinyin: str
     english: List[str]
+    box: int = 1
 
 @dataclass
 class GrammarPoint:
