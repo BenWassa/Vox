@@ -1,77 +1,90 @@
 
+
 let currentCard = null;
 let mode = 'guess-english'; // 'guess-english' or 'guess-hanzi'
+const cardContainer = document.getElementById('card-container');
+const hanzi = document.getElementById('hanzi');
+const pinyin = document.getElementById('pinyin');
+const english = document.getElementById('english');
+const revealBtn = document.getElementById('reveal');
+const correctBtn = document.getElementById('correct');
+const incorrectBtn = document.getElementById('incorrect');
+const modeLabel = document.getElementById('mode-label');
 
 function showTab(name) {
-    document.querySelectorAll('.tab').forEach(div => div.style.display = 'none');
-    document.getElementById(name).style.display = 'block';
+    document.querySelectorAll('.tab').forEach(div => div.classList.add('hidden'));
+    document.getElementById(name).classList.remove('hidden');
     if (name === 'vocab') loadCard();
     if (name === 'grammar') loadGrammar();
     if (name === 'dashboard') loadStats();
 }
 
-function loadCard() {
-    fetch('/api/card').then(r => r.json()).then(data => {
-        const pinyin = document.getElementById('pinyin');
-        const english = document.getElementById('english');
-        const hanzi = document.getElementById('hanzi');
-        const revealBtn = document.getElementById('reveal');
-        const correctBtn = document.getElementById('correct');
-        const incorrectBtn = document.getElementById('incorrect');
-        const modeLabel = document.getElementById('mode-label');
-
+async function loadCard() {
+    setLoading(true);
+    try {
+        const response = await fetch('/api/card');
+        if (!response.ok) throw new Error('Failed to fetch card');
+        const data = await response.json();
         if (!data.available) {
-            pinyin.innerText = '';
-            english.innerText = '';
-            hanzi.innerText = 'All done!';
+            pinyin.textContent = '';
+            english.textContent = '';
+            hanzi.textContent = 'All done!';
             revealBtn.disabled = true;
             correctBtn.disabled = true;
             incorrectBtn.disabled = true;
-            modeLabel.innerText = '';
+            modeLabel.textContent = '';
             currentCard = null;
+            setLoading(false);
             return;
         }
         currentCard = data.card;
         if (mode === 'guess-english') {
-            hanzi.innerText = data.card.hanzi;
-            pinyin.innerText = data.card.pinyin;
-            english.innerText = '?';
-            modeLabel.innerText = 'Guess the English meaning';
+            hanzi.textContent = data.card.hanzi;
+            pinyin.textContent = data.card.pinyin;
+            english.textContent = '?';
+            modeLabel.textContent = 'Guess the English meaning';
         } else {
-            hanzi.innerText = '?';
-            pinyin.innerText = '';
-            english.innerText = data.card.english;
-            modeLabel.innerText = 'Guess the Hanzi and Pinyin';
+            hanzi.textContent = '?';
+            pinyin.textContent = '';
+            english.textContent = data.card.english;
+            modeLabel.textContent = 'Guess the Hanzi and Pinyin';
         }
         revealBtn.disabled = false;
         correctBtn.disabled = true;
         incorrectBtn.disabled = true;
-    });
+    } catch (err) {
+        showError('Could not load card. Please try again.');
+    }
+    setLoading(false);
 }
 
 function reveal() {
     if (!currentCard) return;
-    const hanzi = document.getElementById('hanzi');
-    const pinyin = document.getElementById('pinyin');
-    const english = document.getElementById('english');
     if (mode === 'guess-english') {
-        english.innerText = currentCard.english;
+        english.textContent = currentCard.english;
     } else {
-        hanzi.innerText = currentCard.hanzi;
-        pinyin.innerText = currentCard.pinyin;
+        hanzi.textContent = currentCard.hanzi;
+        pinyin.textContent = currentCard.pinyin;
     }
-    document.getElementById('correct').disabled = false;
-    document.getElementById('incorrect').disabled = false;
-    document.getElementById('reveal').disabled = true;
+    correctBtn.disabled = false;
+    incorrectBtn.disabled = false;
+    revealBtn.disabled = true;
 }
 
-function mark(correct) {
+async function mark(correct) {
     if (!currentCard) return;
-    fetch('/api/card/' + currentCard.id, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({correct: correct})
-    }).then(() => loadCard());
+    setLoading(true);
+    try {
+        await fetch(`/api/card/${currentCard.id}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({correct})
+        });
+        await loadCard();
+    } catch (err) {
+        showError('Could not submit answer.');
+    }
+    setLoading(false);
 }
 
 function switchMode() {
@@ -79,8 +92,12 @@ function switchMode() {
     loadCard();
 }
 
-function loadGrammar() {
-    fetch('/api/grammar').then(r => r.json()).then(items => {
+async function loadGrammar() {
+    setLoading(true);
+    try {
+        const response = await fetch('/api/grammar');
+        if (!response.ok) throw new Error('Failed to fetch grammar');
+        const items = await response.json();
         const table = document.getElementById('grammar-table');
         table.innerHTML = '<tr><th>ID</th><th>Pattern</th><th>Status</th></tr>';
         items.forEach(pt => {
@@ -94,21 +111,71 @@ function loadGrammar() {
                 </select></td>`;
             table.appendChild(tr);
         });
-    });
+    } catch (err) {
+        showError('Could not load grammar points.');
+    }
+    setLoading(false);
 }
 
-function updateGrammar(id, status) {
-    fetch('/api/grammar/' + id, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({status: status})
-    });
+async function updateGrammar(id, status) {
+    try {
+        await fetch(`/api/grammar/${id}`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({status})
+        });
+    } catch (err) {
+        showError('Could not update grammar point.');
+    }
 }
 
-function loadStats() {
-    fetch('/api/dashboard').then(r => r.json()).then(stats => {
-        document.getElementById('stats').innerText = JSON.stringify(stats, null, 2);
-    });
+async function loadStats() {
+    setLoading(true);
+    try {
+        const response = await fetch('/api/dashboard');
+        if (!response.ok) throw new Error('Failed to fetch stats');
+        const stats = await response.json();
+        document.getElementById('stats').textContent = JSON.stringify(stats, null, 2);
+    } catch (err) {
+        showError('Could not load dashboard stats.');
+    }
+    setLoading(false);
 }
+
+
+// Loading indicator helpers
+function setLoading(isLoading) {
+    if (isLoading) {
+        document.body.classList.add('loading');
+    } else {
+        document.body.classList.remove('loading');
+    }
+}
+
+// Error feedback
+function showError(msg) {
+    let err = document.getElementById('error-message');
+    if (!err) {
+        err = document.createElement('div');
+        err.id = 'error-message';
+        err.style.position = 'fixed';
+        err.style.top = '20px';
+        err.style.left = '50%';
+        err.style.transform = 'translateX(-50%)';
+        err.style.background = '#ef4444';
+        err.style.color = 'white';
+        err.style.padding = '12px 24px';
+        err.style.borderRadius = '8px';
+        err.style.zIndex = '9999';
+        err.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+        document.body.appendChild(err);
+    }
+    err.textContent = msg;
+    err.style.display = 'block';
+    setTimeout(() => { err.style.display = 'none'; }, 3000);
+}
+
+// Client-side validation for input (future extension)
+// Example: validate user input before marking correct/incorrect
 
 showTab('vocab');
