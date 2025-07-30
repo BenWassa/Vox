@@ -58,7 +58,12 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 
 ## 7. Debugging & Developer Tools
 - [ ] Set up robust debugging for both frontend (browser devtools, console, breakpoints) and backend (logging, Flask debug mode, pdb)
-- [ ] Document best practices for debugging and troubleshooting
+- [ ] Implement modular rotating debug logs for backend and frontend:
+    - Backend: Use Python's logging.handlers.RotatingFileHandler to write logs to `logs/backend_debug.log`, rotating after N runs (e.g., keep 3-5 files, 1MB each).
+    - Frontend: Write key debug info to `logs/frontend_debug.log` via API endpoint or browser download, also rotating after N runs/files.
+    - Each log file should be modular (e.g., separate logs for API, database, UI events) for precision and easy troubleshooting.
+    - Document how to read, clear, and interpret these logs for developers.
+- [ ] Document best practices for debugging and troubleshooting, including how to use the rotating logs and browser devtools.
 
 ## 8. General/Project
 - [ ] Add README badges (build, license, etc.)
