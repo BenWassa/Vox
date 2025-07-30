@@ -29,6 +29,28 @@ Legacy desktop code has been removed for clarity and maintainability.
    ```bash
    flask --app webapp run
    ```
+
+## Running Tests
+1. Install all requirements (including pytest):
+   ```bash
+   pip install -r webapp/requirements.txt
+   ```
+2. Run all tests using pytest from the project root:
+   ```bash
+   pytest
+   ```
+   This will automatically discover and run all tests in the `tests/` folder.
+
+3. (Recommended) To check test coverage, install coverage and run:
+   ```bash
+   pip install coverage
+   coverage run -m pytest
+   coverage report -m
+   ```
+   This will show you which lines of code are covered by tests.
+
+All tests should pass. If you add new features, please add or update tests in `tests/`.
+
 4. Open your browser to [http://localhost:5000](http://localhost:5000)
 
 ## License
