@@ -2,8 +2,8 @@ import random
 import random
 import json
 import os
-from dataclasses import dataclass
-from typing import List, Optional
+from dataclasses import dataclass, field
+from typing import List, Optional, Dict
 
 
 def _load_json(path: str):
@@ -17,6 +17,8 @@ class Card:
     pinyin: str
     english: List[str]
     box: int = 1
+    status: str = 'new'  # new, learning, review, mastered
+    streak: int = 0
 
 @dataclass
 class GrammarPoint:
@@ -28,7 +30,11 @@ class GrammarPoint:
 
 
 class DatabaseManager:
-    """Very lightweight data loader used by the web API."""
+    """Data loader and vocab progress manager for Project Vox."""
+
+    ACTIVE_POOL_SIZE = 3  # Number of active vocab items at a time
+    STREAK_TO_REVIEW = 3  # Correct answers to move from learning to review
+    STREAK_TO_MASTERED = 2  # Correct answers to move from review to mastered
 
     def __init__(self, data_dir: str):
         self.data_dir = data_dir
@@ -38,7 +44,7 @@ class DatabaseManager:
 
         # Load progress if available
         progress = {
-            'card_boxes': {},
+            'card_status': {},  # id: {status, streak}
             'grammar_status': {}
         }
         if os.path.exists(self.progress_path):
@@ -46,13 +52,74 @@ class DatabaseManager:
                 with open(self.progress_path, 'r', encoding='utf-8') as f:
                     progress.update(json.load(f))
             except Exception:
-                # Ignore corrupt progress files
                 pass
 
         for c in self.cards:
-            c.box = int(progress['card_boxes'].get(c.id, 1))
+            state = progress['card_status'].get(c.id, {})
+            c.status = state.get('status', 'new')
+            c.streak = int(state.get('streak', 0))
         for g in self.grammar:
             g.status = progress['grammar_status'].get(g.id, g.status)
+
+    def _save_progress(self):
+        data = {
+            'card_status': {c.id: {'status': c.status, 'streak': c.streak} for c in self.cards},
+            'grammar_status': {g.id: g.status for g in self.grammar},
+        }
+        with open(self.progress_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f)
+
+    def get_active_vocab(self) -> List[Card]:
+        """Return the current active pool of vocab items (learning or review, in ID order)."""
+        # Always keep pool at ACTIVE_POOL_SIZE, prioritizing 'learning', then 'review', then unlock new
+        pool = [c for c in self.cards if c.status in ('learning', 'review')]
+        # If pool is too small, unlock new items by ID order
+        if len(pool) < self.ACTIVE_POOL_SIZE:
+            needed = self.ACTIVE_POOL_SIZE - len(pool)
+            new_items = [c for c in self.cards if c.status == 'new']
+            new_items = sorted(new_items, key=lambda c: c.id)[:needed]
+            for c in new_items:
+                c.status = 'learning'
+                c.streak = 0
+            pool += new_items
+            self._save_progress()
+        # Always return in ID order
+        return sorted(pool, key=lambda c: c.id)
+
+    def get_card_to_review(self) -> Optional[Card]:
+        """Return a card from the active pool, prioritizing learning, then review, in ID order."""
+        pool = self.get_active_vocab()
+        learning = [c for c in pool if c.status == 'learning']
+        review = [c for c in pool if c.status == 'review']
+        if learning:
+            return learning[0]
+        elif review:
+            return review[0]
+        return None
+
+    def update_card_progress(self, card_id: str, correct: bool):
+        for c in self.cards:
+            if c.id == card_id:
+                if c.status == 'learning':
+                    if correct:
+                        c.streak += 1
+                        if c.streak >= self.STREAK_TO_REVIEW:
+                            c.status = 'review'
+                            c.streak = 0
+                    else:
+                        c.streak = 0
+                elif c.status == 'review':
+                    if correct:
+                        c.streak += 1
+                        if c.streak >= self.STREAK_TO_MASTERED:
+                            c.status = 'mastered'
+                            c.streak = 0
+                    else:
+                        c.status = 'learning'
+                        c.streak = 0
+                # mastered: do nothing for now
+                break
+        self._save_progress()
 
     def _save_progress(self):
         data = {
@@ -124,6 +191,8 @@ def _to_card(raw: dict) -> Card:
         pinyin=raw['pinyin'],
         english=raw['english'],
         box=int(raw.get('box', 1)),
+        status=raw.get('status', 'new'),
+        streak=int(raw.get('streak', 0)),
     )
 
 def _to_grammar(raw: dict) -> GrammarPoint:
