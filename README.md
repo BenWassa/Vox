@@ -39,13 +39,29 @@ No installation is needed. Just clone this repository or download the source cod
 To start the graphical user interface (GUI), run `main.py` from your terminal:
 
 ```bash
-python main.py
+    python main.py
 ```
 
 On the very first run, the application will automatically:
 1.  Create the `progress.db` SQLite database file.
 2.  Create the `backups/` directory.
 3.  Populate the database with the initial vocabulary and grammar from the `data/` directory.
+
+## Web Frontend
+
+If you prefer an HTML-based interface, a small web application is included. First install the required dependency:
+
+```bash
+pip install -r webapp/requirements.txt
+```
+
+Then start the server:
+
+```bash
+python webapp/app.py
+```
+
+Navigate to <http://localhost:5000> in your browser to use the web interface.
 
 ## Using the Application
 
@@ -117,6 +133,11 @@ Vox/
 ├── logic.py            # Pure business logic (e.g., SRS intervals)
 ├── ui.py               # All tkinter GUI components
 ├── models.py           # Data classes for vocab/grammar objects
+│
+├── webapp/             # HTML frontend powered by Flask
+│   ├── app.py          # Web server entry point
+│   ├── templates/      # HTML templates
+│   └── static/         # CSS/JS assets
 │
 ├── data/
 │   ├── vocab_a1.json   # Source HSK A1 vocabulary
