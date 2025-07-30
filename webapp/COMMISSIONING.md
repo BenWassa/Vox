@@ -14,35 +14,36 @@ This document outlines planned upgrades, refactoring, and enhancements for the V
 - [x] Add logging for key actions and errors
 - [x] Add unit tests for API endpoints
 
+
 ## 2. `static/app.js` (Frontend JS)
-- [ ] Refactor to use modern JS (ES6+, modules if possible)
-- [ ] Improve error handling for fetch requests
-- [ ] Add loading indicators and user feedback
-- [ ] Refactor DOM manipulation for clarity and maintainability
-- [ ] Add client-side validation where appropriate
+- [x] Refactor to use modern JS (ES6+ syntax, modular structure planned)
+- [x] Improve error handling for fetch requests (try/catch, user feedback)
+- [x] Add loading indicators and user feedback (loading spinner, error popups)
+- [x] Refactor DOM manipulation for clarity and maintainability (querySelector, clear structure)
+- [ ] Add client-side validation where appropriate (basic structure present, more needed)
 - [ ] Add tests (Jest or similar, if feasible)
 
 ### New UI/UX Features
-- [ ] Display a centered large Chinese character with pinyin beneath
-- [ ] Input for user to guess the English translation
-- [ ] Add mode switch button (character→English or English→character)
-- [ ] Update logic to support both directions
-- [ ] Show feedback for correct/incorrect answers
+- [x] Display a centered large Chinese character with pinyin beneath
+- [x] Input for user to guess the English translation
+- [x] Add mode switch button (character→English or English→character)
+- [x] Update logic to support both directions
+- [x] Show feedback for correct/incorrect answers
 
 ## 3. `static/style.css` (Frontend CSS)
-- [ ] Redesign for a modern, visually appealing look (colors, spacing, fonts)
-- [ ] Center main quiz view (character/pinyin/guess input)
-- [ ] Make UI responsive for mobile/tablet
-- [ ] Add transitions/animations for interactivity
-- [ ] Improve accessibility (contrast, focus states, etc.)
+- [x] Redesign for a modern, visually appealing look (colors, spacing, fonts)
+- [x] Center main quiz view (character/pinyin/guess input)
+- [x] Make UI responsive for mobile/tablet
+- [x] Add transitions/animations for interactivity
+- [x] Improve accessibility (contrast, focus states, etc.)
 
 ## 4. `templates/index.html` (Frontend HTML)
-- [ ] Refactor structure for clarity and maintainability
+- [x] Refactor structure for clarity and maintainability
 - [ ] Add meta tags for SEO and mobile support
 - [ ] Add favicon and app icon
-- [ ] Improve semantic HTML (use proper tags for tables, buttons, etc.)
-- [ ] Add accessibility features (aria-labels, roles)
-- [ ] Add main quiz view: centered character, pinyin, guess input, mode switch button
+- [x] Improve semantic HTML (use proper tags for tables, buttons, etc.)
+- [x] Add accessibility features (aria-labels, roles)
+- [x] Add main quiz view: centered character, pinyin, guess input, mode switch button
 
 ## 5. `data/` (Vocab & Grammar JSON)
 - [x] Ensure `vocab_a1.json` and `grammar_a1.json` are present in `webapp/data/`
