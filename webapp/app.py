@@ -1,5 +1,5 @@
-from . import create_app
-from .config import DevConfig, ProdConfig
+from webapp import create_app
+from webapp.config import DevConfig, ProdConfig
 import os
 
 config_map = {
