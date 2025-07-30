@@ -2,6 +2,7 @@ from flask import Blueprint, current_app, jsonify, request
 from ..database import DatabaseManager, Card, GrammarPoint
 from typing import Optional
 import logging
+import json
 
 api_bp = Blueprint('api', __name__)
 
@@ -23,6 +24,7 @@ def get_card():
     except Exception:
         current_app.logger.exception('Failed to retrieve card')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Retrieved card: %s', card.id if card else 'none')
 
     if not card:
         return jsonify({'available': False})
@@ -47,6 +49,7 @@ def mark_card(card_id):
     except Exception:
         current_app.logger.exception('Failed to update card')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Updated card %s with correct=%s', card_id, correct)
     return jsonify({'status': 'ok'})
 
 
@@ -58,6 +61,7 @@ def grammar_list():
     except Exception:
         current_app.logger.exception('Failed to load grammar list')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Returned %d grammar points', len(points))
 
     return jsonify([{
         'id': p.id,
@@ -80,6 +84,7 @@ def update_grammar(grammar_id):
     except Exception:
         current_app.logger.exception('Failed to update grammar')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Updated grammar %s to status %s', grammar_id, status)
     return jsonify({'status': 'ok'})
 
 
@@ -91,6 +96,7 @@ def dashboard():
     except Exception:
         current_app.logger.exception('Failed to get dashboard stats')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Fetched dashboard stats')
     return jsonify(stats)
 
 
@@ -102,6 +108,7 @@ def export_progress():
     except Exception:
         current_app.logger.exception('Failed to export progress')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Exported progress JSON')
     return current_app.response_class(json_data, mimetype='application/json')
 
 
@@ -111,8 +118,11 @@ def import_progress():
     json_data = request.data.decode('utf-8')
     try:
         get_db().import_progress_from_json(json_data)
+    except json.JSONDecodeError:
+        return jsonify({'error': 'invalid json'}), 400
     except Exception:
         current_app.logger.exception('Failed to import progress')
         return jsonify({'error': 'internal'}), 500
+    current_app.logger.info('Imported progress JSON')
     return jsonify({'status': 'ok'})
 
