@@ -1,6 +1,3 @@
-
-
-
 # Project Vox
 
 Project Vox is an offline-first language learning tool for Mandarin Chinese (A1 level), featuring spaced repetition vocabulary, grammar tracking, and progress visualization.
