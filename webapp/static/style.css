@@ -357,7 +357,7 @@ nav button:active::before {
 /* Enhanced English Display */
 #english {
   font-size: clamp(1.125rem, 3vw, 1.75rem);
-  color: var(--text-secondary);
+  color: var(--text-secondary) !important;
   margin-bottom: var(--space-6);
   font-weight: 400;
   text-align: center;
