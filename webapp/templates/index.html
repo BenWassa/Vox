@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vox Web</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <button onclick="showTab('vocab')">Vocab Study</button>
+        <button onclick="showTab('grammar')">Grammar</button>
+        <button onclick="showTab('dashboard')">Dashboard</button>
+    </nav>
+    <div id="vocab" class="tab">
+        <h2>Vocab Study</h2>
+        <div id="card">
+            <p id="pinyin"></p>
+            <p id="english"></p>
+            <p id="hanzi" style="font-size:48px;">?</p>
+        </div>
+        <button id="reveal" onclick="reveal()">Reveal</button>
+        <button id="correct" onclick="mark(true)" disabled>Correct</button>
+        <button id="incorrect" onclick="mark(false)" disabled>Incorrect</button>
+    </div>
+    <div id="grammar" class="tab" style="display:none">
+        <h2>Grammar Points</h2>
+        <table id="grammar-table"></table>
+    </div>
+    <div id="dashboard" class="tab" style="display:none">
+        <h2>Dashboard</h2>
+        <pre id="stats"></pre>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

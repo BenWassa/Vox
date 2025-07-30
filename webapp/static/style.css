@@ -1,0 +1,4 @@
+body { font-family: Arial, sans-serif; margin: 20px; }
+nav button { margin-right: 10px; }
+.tab { margin-top: 20px; }
+#grammar-table td, #grammar-table th { border: 1px solid #ccc; padding: 4px 8px; }
