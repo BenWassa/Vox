@@ -121,31 +121,7 @@ class DatabaseManager:
                 break
         self._save_progress()
 
-    def _save_progress(self):
-        data = {
-            'card_boxes': {c.id: c.box for c in self.cards},
-            'grammar_status': {g.id: g.status for g in self.grammar},
-        }
-        with open(self.progress_path, 'w', encoding='utf-8') as f:
-            json.dump(data, f)
 
-    def get_card_to_review(self) -> Optional[Card]:
-        if not self.cards:
-            return None
-        # Select randomly among cards in the lowest box (simple Leitner system)
-        min_box = min(c.box for c in self.cards)
-        candidates = [c for c in self.cards if c.box == min_box]
-        return random.choice(candidates)
-
-    def update_card_progress(self, card_id: str, correct: bool):
-        for c in self.cards:
-            if c.id == card_id:
-                if correct:
-                    c.box = min(c.box + 1, 6)
-                else:
-                    c.box = 1
-                break
-        self._save_progress()
 
     def get_all_grammar_points(self) -> List[GrammarPoint]:
         return self.grammar
